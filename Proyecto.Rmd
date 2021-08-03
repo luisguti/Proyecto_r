@@ -47,16 +47,38 @@ yearly
 ```{r}
 
 ggplot(yearly, aes(x=year, y=proportion_deaths, color=clinic)) +
-  geom_line()
+  geom_line() +
+  labs(x = "Año", y = "Proporción de muertes", title = "Muerte en las clínicas", subtitle = "Proporción de muertes en la clínica 1 y clínica 2", colour = "Clinicas")
 
 ```
 
 **Comienza el lavado de manos**
 
-4. 
+4. Cargar los datos mensuales de la Clinica 1 para ver si el lavado de manos tuvo algun efecto.
+Agregar la columna proportion_deaths a monthly, esta columna será la proporción de muertes por nacimientos.
+
 ```{r}
 monthly <- read_csv("deaths_clinic_1.csv")
 
 View(monthly)
+
+monthly <- monthly %>%
+  mutate(proportion_deaths = deaths / births)
+
+monthly %>%
+  head()
 ```
 
+**El efecto del lavado de manos**
+
+5. Hacer una gráfica lineal de proportion_deaths por fecha para el data frame monthly usando ggplot
+
+```{r}
+ggplot(monthly, aes(x=date, y=proportion_deaths)) +
+  geom_line() +
+  labs(x = "Fecha", y = "Proporción de muertes", title = "Efecto del lavado de manos", subtitle = "Proporción de muertes a lo largo del tiempo") 
+```
+
+**Los Resultados del lavado de manos**
+
+6. 
