@@ -20,7 +20,7 @@ identificando anomalías en los procedimientos médicos.
 
 **Conociendo los datos**
 
-1.1. Cargar el paquete tidyverse
+1. Cargar el paquete tidyverse, leer el archivo "deaths_handwashing", asignar a yearly y leerlo
 ```{r}
 library(tidyverse)
 
@@ -29,4 +29,34 @@ yearly <- read_csv("deaths_handwashing.csv")
 View(yearly)
 ```
 
+**El alarmante nñumero de muertes**
+
+2. Usar mutate para agregar la columna proportion_deaths a yearly, esta nueva columna se calculará 
+como la proporción de muertes por número de nacimientos.
+
+```{r}
+yearly <- yearly %>%
+  mutate(proportion_deaths = deaths / births)
+
+yearly
+```
+**Muerte en las clínicas**
+
+3. Utilizar ggplot para hacer una gráfica lineal de proportion_deaths por año (columna year) con una linea po clínica. Las líneas deben tener colores distintos. 
+
+```{r}
+
+ggplot(yearly, aes(x=year, y=proportion_deaths, color=clinic)) +
+  geom_line()
+
+```
+
+**Comienza el lavado de manos**
+
+4. 
+```{r}
+monthly <- read_csv("deaths_clinic_1.csv")
+
+View(monthly)
+```
 
