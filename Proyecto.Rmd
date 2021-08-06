@@ -99,6 +99,7 @@ ggplot(monthly, aes(x=date, y=proportion_deaths, color = handwashing_started)) +
 
 7.1. Utilizar group_by y summarise para calcular el promedio de proportion_deaths antes y despues de que se impusiera el lavado de manos. 
 
+
 ```{r}
 month_summary <- monthly %>%
   group_by(handwashing_started) %>%
@@ -109,7 +110,11 @@ month_summary
 ggplot(month_summary, aes(x=handwashing_started, y=mean_proportion_deaths, fill=handwashing_started)) +
   geom_col() +
   labs(x = "Lavado de manos obligatorio", y = "Promedio de proporción de muertes", title = "Promedio Mensual de muertes", subtitle = "Promedio de la proporción de muertes a lo largo del tiempo considerando desde el lavado de manos obligatorio")
+
 ```
 
+**¿Cuánto redujo la proporción mensual de muertes promedio?**
+
+Respuesta: La sepsis es una trágica respuesta a los agentes infecciosos que penetran el sistema del cuerpo humano, puede ser mortal y frecuentemente se relaciona en la hospitalización debido a la falta de cuidados de higiene del personal de salud. En este proyecto se trato de esclarecer paso a paso en cuanto redujo la proporción de muertes por nacimientos, para ello se empleo una análisis de datos con R y se concluyó según los datos mensuales, que el promedio de proporción de muertes a causa de la sepsis se redujo en un 0.07 despues que se impuso el lavado de manos obligatorio. 
 
 
