@@ -81,4 +81,18 @@ ggplot(monthly, aes(x=date, y=proportion_deaths)) +
 
 **Los Resultados del lavado de manos**
 
-6. 
+6.1. Agregar una columna T/F a monthly llamada handwashing_started, que será TRUE a partir del año en que se impueso el lavado de manos. 
+
+```{r}
+monthly <- monthly %>% 
+  mutate (handwashing_started = ifelse (date >= as.Date("1847-01-01"), TRUE, FALSE))
+
+monthly
+```
+6.2. Gráfica lineal de proportion_deaths por fecha para el data frame monthly
+```{r}
+ggplot(monthly, aes(x=date, y=proportion_deaths, color = handwashing_started)) +
+  geom_line() +
+  labs(x = "Fecha", y = "Proporción de muertes", title = "Inicio del lavado de manos", subtitle = "Proporción de muertes a lo largo del tiempo considerando el lavado de manos obligatorio", colour="LAVADO DE MANOS OBLIGATORIO") 
+```
+
